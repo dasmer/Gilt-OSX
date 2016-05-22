@@ -32,7 +32,8 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     }
 
     func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-        photoView.af_setImageWithURL(NSURL())
+        let url = NSURL(string: "http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg")!
+        photoView.af_setImageWithURL(url)
         nameLabel.stringValue = ""
         descriptionLabel.stringValue = ""
         return true
