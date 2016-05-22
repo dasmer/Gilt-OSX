@@ -1,3 +1,3 @@
-github "Alamofire/Alamofire" "3.3.1"
-github "dasmer/GiltKit" "36628801a4b3b1eb079bb2c279dc117d71490d63"
+github "Alamofire/Alamofire" "3.4.0"
+github "dasmer/GiltKit" "99d6b054a8fdcff415425d880a1f90ffc3dfa3a1"
 github "dasmer/AlamofireImage" "cb823b04217a3b778aa1feb4372f378d985c2773"

@@ -1,6 +1,6 @@
 import Cocoa
-import GiltKit
 import AlamofireImage
+import GiltKit
 
 class ViewController: NSViewController {
 
@@ -16,22 +16,13 @@ class ViewController: NSViewController {
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func viewDidAppear() {
         super.viewDidAppear()
-        client.listSalesForStore(.Men, kind: .Upcoming) { sales in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.sales = sales
-            }
-        }
-    }
 
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
+        client.listSalesForStore(.Men, kind: .Upcoming) { [weak self] sales in
+            dispatch_async(dispatch_get_main_queue()) {
+                self?.sales = sales
+            }
         }
     }
 }
