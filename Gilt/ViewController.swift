@@ -1,16 +1,8 @@
 import Cocoa
 import AlamofireImage
-import GiltKit
 
 class ViewController: NSViewController {
 
-    private let client = Client()
-
-    private var sales = [Sale]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     @IBOutlet weak var photoView: NSImageView!
     @IBOutlet weak var descriptionLabel: NSTextField!
     @IBOutlet weak var nameLabel: NSTextField!
@@ -18,12 +10,6 @@ class ViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-
-        client.listSalesForStore(.Men, kind: .Upcoming) { [weak self] sales in
-            dispatch_async(dispatch_get_main_queue()) {
-                self?.sales = sales
-            }
-        }
     }
 }
 
@@ -31,7 +17,7 @@ class ViewController: NSViewController {
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
 
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return sales.count
+        return 0
     }
 
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
@@ -40,17 +26,18 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeViewWithIdentifier("SaleCell", owner: self) as? SaleCellView else { return NSView() }
-        let sale = sales[row]
-        cell.photoView.af_setImageWithURL(sale.imageURL)
-        cell.nameLabel.stringValue = sale.name
+
+        let url = NSURL(string: "http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg")!
+        cell.photoView.af_setImageWithURL(url)
+        cell.nameLabel.stringValue = ""
         return cell
     }
 
     func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-        let sale = sales[row]
-        photoView.af_setImageWithURL(sale.imageURL)
-        nameLabel.stringValue = sale.name
-        descriptionLabel.stringValue = sale.description
+        let url = NSURL(string: "http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg")!
+        photoView.af_setImageWithURL(url)
+        nameLabel.stringValue = ""
+        descriptionLabel.stringValue = ""
         return true
     }
 }
