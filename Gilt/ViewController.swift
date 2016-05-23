@@ -26,7 +26,9 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeViewWithIdentifier("SaleCell", owner: self) as? SaleCellView else { return NSView() }
-        cell.photoView.af_setImageWithURL(NSURL())
+
+        let url = NSURL(string: "http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg")!
+        cell.photoView.af_setImageWithURL(url)
         cell.nameLabel.stringValue = ""
         return cell
     }
